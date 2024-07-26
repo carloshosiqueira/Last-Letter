@@ -18,7 +18,7 @@ import LastLetter from './components/lastletter'
           options={{title: 'Bem vindo'}} />
   
           <Stack.Screen
-          name="TelaJogo"
+          name="LastLetter"
           component={LastLetter}
           options={{title: 'Última Letra'}} />
   
