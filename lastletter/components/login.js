@@ -28,7 +28,7 @@ export default function Login({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <Text>Formulario de cadastro</Text>
+            <Text style={styles.Text}>Formulario de cadastro</Text>
             <View style={styles.form}>
                 <MaskInput
                     style={styles.textInput}
@@ -45,7 +45,7 @@ export default function Login({ navigation }) {
                     keyboardType="numeric"
                 />
                 <TouchableOpacity onPress={validaUsuario}>
-                    <Text>
+                    <Text style={styles.Text}>
                         Login
                     </Text>
                 </TouchableOpacity>
@@ -56,28 +56,43 @@ export default function Login({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#ffd1eb',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: 15
+        padding: 20,
+    },
+    title: {
+        fontSize: 24,
+        marginBottom: 20,
+        color: '#ff6347', // Tom mais quente (coral)
     },
     form: {
-        width: width,
-        padding: 20,
+        width: '100%',
+        maxWidth: 400,
         justifyContent: 'center',
         alignItems: 'center',
-        gap: 10,
+        marginTop: 30,
     },
     textInput: {
-        padding: 5,
-        width: 200,
-        height: 40,
-        borderWidth: 1,
-        borderColor: '#006eff',
-        borderWidth: 1,
-        borderTopWidth: 0,
-        borderLeftWidth: 0,
-        borderRightWidth: 0,
-
+        width: '100%',
+        height: 50,
+        paddingHorizontal: 10,
+        marginBottom: 15,
+        borderWidth: 2,
+        borderRadius: 5,
+        borderColor: '#ff1493', // Tom mais quente (rosa)
+        fontSize: 18,
+        backgroundColor: '#d1f1ff', // Tom mais quente (rosa claro)
+    },
+    loginButton: {
+        backgroundColor: '#ff6347', // Tom mais quente (coral)
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        borderRadius: 5,
+    },
+    loginText: {
+        color: '#fff',
+        fontSize: 18,
+        fontWeight: 'bold',
     },
 });
