@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, FlatList, Alert, Keyboard } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, FlatList, Alert, Keyboard, Modal, TouchableOpacity } from 'react-native';
 
 const INITIAL_TIME = 12;
 const DECREMENT_TIME = 1;
@@ -13,6 +13,7 @@ const LastLetter = () => {
   const [isGameActive, setIsGameActive] = useState(false);
   const [winner, setWinner] = useState(null);
   const [backgroundColor, setBackgroundColor] = useState('#FFFFFF');
+  const [modalVisible, setModalVisible] = useState(true); // Estado para controlar a visibilidade do modal
   const timerRef = useRef(null);
   const inputRef = useRef(null);
 
@@ -84,11 +85,36 @@ const LastLetter = () => {
 
   const getBackgroundColor = () => {
     if (!isGameActive) return '#FFFFFF';
-    return currentPlayer === 1 ? '#FFDDC1' : '#C1E1FF';
+    return currentPlayer === 1 ? '#ffdae9' : '#FFFACD';
   };
 
   return (
     <View style={[styles.container, { backgroundColor }]}>
+      <Modal
+        visible={modalVisible}
+        animationType="slide"
+        transparent={true}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalTitle}>Regras do Jogo</Text>
+            <Text style={styles.modalText}>
+              1. Cada jogador deve digitar uma palavra que comece com a última letra da palavra anterior.
+            </Text>
+            <Text style={styles.modalText}>
+              2. Não é permitido repetir palavras.
+            </Text>
+            <Text style={styles.modalText}>
+              3. O tempo para cada jogada é limitado. Se o tempo acabar, o outro jogador vence.
+            </Text>
+            <TouchableOpacity onPress={() => setModalVisible(false)} style={styles.modalButton}>
+              <Text style={styles.modalButtonText}>Fechar</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+
       <Text style={styles.title}>Jogo de Cadeia de Palavras</Text>
       {isGameActive ? (
         <>
@@ -136,26 +162,26 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 16,
-    color: '#333',
+    color: '#FF69B4', // Rosa escuro
   },
   subtitle: {
     fontSize: 18,
     marginBottom: 8,
-    color: '#666',
+    color: '#503b0e', // Amarelo ouro
   },
   timer: {
     fontSize: 16,
     marginBottom: 16,
-    color: '#999',
+    color: '#503b0e', // Rosa claro
   },
   input: {
     height: 40,
-    borderColor: '#CCC',
+    borderColor: '#FF69B4', // Amarelo ouro
     borderWidth: 1,
     marginBottom: 16,
     paddingHorizontal: 8,
     width: '80%',
-    backgroundColor: '#FFF',
+    backgroundColor: '#ffe8b7', // Amarelo claro
     borderRadius: 8,
   },
   wordList: {
@@ -165,7 +191,7 @@ const styles = StyleSheet.create({
   word: {
     fontSize: 16,
     padding: 4,
-    color: '#444',
+    color: '#FF69B4', // Rosa escuro
   },
   winnerContainer: {
     justifyContent: 'center',
@@ -175,7 +201,42 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 16,
-    color: '#333',
+    color: '#d64e86', // Rosa escuro
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fundo semitransparente
+  },
+  modalContent: {
+    width: '80%',
+    backgroundColor: 'white',
+    padding: 20,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  modalText: {
+    fontSize: 16,
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  modalButton: {
+    marginTop: 20,
+    backgroundColor: '#FF69B4', // Rosa escuro
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+  },
+  modalButtonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 

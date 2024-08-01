@@ -28,7 +28,7 @@ export default function Login({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.Text}>Formulario de cadastro</Text>
+            <Text style={styles.title}>Formulario de cadastro</Text>
             <View style={styles.form}>
                 <MaskInput
                     style={styles.textInput}
@@ -45,7 +45,7 @@ export default function Login({ navigation }) {
                     keyboardType="numeric"
                 />
                 <TouchableOpacity onPress={validaUsuario}>
-                    <Text style={styles.Text}>
+                    <Text style={styles.loginText}>
                         Login
                     </Text>
                 </TouchableOpacity>
@@ -63,8 +63,9 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 24,
-        marginBottom: 20,
-        color: '#ff6347', // Tom mais quente (coral)
+        fontWeight: 'bold', // Adiciona a mesma propriedade de fonte
+        marginBottom: 16,
+        color: '#FF69B4', // Rosa escuro
     },
     form: {
         width: '100%',
@@ -75,14 +76,14 @@ const styles = StyleSheet.create({
     },
     textInput: {
         width: '100%',
-        height: 50,
+        height: 40,
         paddingHorizontal: 10,
         marginBottom: 15,
-        borderWidth: 2,
-        borderRadius: 5,
-        borderColor: '#ff1493', // Tom mais quente (rosa)
+        borderWidth: 1,
+        borderRadius: 8,
+        borderColor: '#ffe8b7', // Amarelo ouro
         fontSize: 18,
-        backgroundColor: '#d1f1ff', // Tom mais quente (rosa claro)
+        backgroundColor: '#ffe8b7', // Amarelo claro
     },
     loginButton: {
         backgroundColor: '#ff6347', // Tom mais quente (coral)
@@ -93,6 +94,6 @@ const styles = StyleSheet.create({
     loginText: {
         color: '#fff',
         fontSize: 18,
-        fontWeight: 'bold',
+        fontWeight: 'bold', // Adiciona a mesma propriedade de fonte
     },
 });
