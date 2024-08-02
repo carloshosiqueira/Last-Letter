@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, FlatList, Alert, Keyboard, Modal, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, FlatList, Alert, Keyboard, Modal, TouchableOpacity, ImageBackground } from 'react-native';
 
 const INITIAL_TIME = 12;
 const DECREMENT_TIME = 1;
@@ -89,13 +89,15 @@ const LastLetter = () => {
   };
 
   return (
-    <View style={[styles.container, { backgroundColor }]}>
+   
+    <View style={styles.container}>
       <Modal
         visible={modalVisible}
         animationType="slide"
         transparent={true}
         onRequestClose={() => setModalVisible(false)}
       >
+       
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
             <Text style={styles.modalTitle}>Regras do Jogo</Text>
@@ -112,9 +114,10 @@ const LastLetter = () => {
               <Text style={styles.modalButtonText}>Fechar</Text>
             </TouchableOpacity>
           </View>
+          
         </View>
       </Modal>
-
+      <ImageBackground source={require('../assets/bg.jpg')} style={styles.backgroundImage}>
       <Text style={styles.title}>Jogo de Cadeia de Palavras</Text>
       {isGameActive ? (
         <>
@@ -147,11 +150,18 @@ const LastLetter = () => {
           <Button title="Iniciar Jogo" onPress={startGame} />
         )
       )}
+      </ImageBackground>
     </View>
+
+   
   );
 };
 
 const styles = StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover',
+},
   container: {
     flex: 1,
     justifyContent: 'center',

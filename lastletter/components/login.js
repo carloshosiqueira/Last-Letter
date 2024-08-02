@@ -1,10 +1,9 @@
-import {StyleSheet,Text,View,TextInput,Dimensions,TouchableOpacity} 
-from 'react-native';
+import { StyleSheet, Text, View, TextInput, Dimensions, TouchableOpacity, ImageBackground } from 'react-native';
 import React from 'react';
 import MaskInput from 'react-native-mask-input';
 
 //pegar dimensão da tela
-const { width, height } = Dimensions.get('screen')
+const { width, height } = Dimensions.get('screen');
 
 const users = [
     {
@@ -27,36 +26,43 @@ export default function Login({ navigation }) {
     };
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Formulario de cadastro</Text>
-            <View style={styles.form}>
-                <MaskInput
-                    style={styles.textInput}
-                    onChangeText={(masked, unmasked) => setUsername(masked)}
-                    value={username}
-                    placeholder="Digite seu usuário"
-                />
-                <MaskInput
-                    mask={() => [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/]}
-                    style={styles.textInput}
-                    onChangeText={(masked, unmasked) => setPass(masked)}
-                    value={pass}
-                    placeholder="Digite sua senha"
-                    keyboardType="numeric"
-                />
-                <TouchableOpacity onPress={validaUsuario}>
-                    <Text style={styles.loginText}>
-                        Login
-                    </Text>
-                </TouchableOpacity>
+        <ImageBackground source={require('../assets/bg.jpg')} style={styles.backgroundImage}>
+            <View style={styles.container}>
+                <Text style={styles.title}>Formulário de cadastro</Text>
+                <View style={styles.form}>
+                    <MaskInput
+                        style={styles.textInput}
+                        onChangeText={(masked, unmasked) => setUsername(masked)}
+                        value={username}
+                        placeholder="Digite seu usuário"
+                    />
+                    <MaskInput
+                        mask={() => [/\d/, /\d/, /\d/, /\d/, /\d/, /\d/]}
+                        style={styles.textInput}
+                        onChangeText={(masked, unmasked) => setPass(masked)}
+                        value={pass}
+                        placeholder="Digite sua senha"
+                        keyboardType="numeric"
+                    />
+                    <TouchableOpacity onPress={validaUsuario}>
+                        <Text style={styles.loginText}>
+                            Login
+                        </Text>
+                    </TouchableOpacity>
+                </View>
             </View>
-        </View>
-    )
+        </ImageBackground>
+    );
 }
+
 const styles = StyleSheet.create({
+    backgroundImage: {
+        flex: 1,
+        resizeMode: 'cover',
+    },
     container: {
         flex: 1,
-        backgroundColor: '#ffd1eb',
+        backgroundColor: 'rgba(255, 209, 235, 0.5)', // Fundo semitransparente para combinar com a imagem de fundo
         alignItems: 'center',
         justifyContent: 'center',
         padding: 20,
@@ -66,6 +72,9 @@ const styles = StyleSheet.create({
         fontWeight: 'bold', // Adiciona a mesma propriedade de fonte
         marginBottom: 16,
         color: '#FF69B4', // Rosa escuro
+        textShadowColor: 'rgba(0, 0, 0, 0.75)',
+        textShadowOffset: { width: 3, height: 2 },
+        textShadowRadius: 1,
     },
     form: {
         width: '100%',
@@ -73,7 +82,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 30,
-        //pop
     },
     textInput: {
         width: '100%',
