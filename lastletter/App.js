@@ -12,10 +12,10 @@ import LastLetter from './components/lastletter'
       <NavigationContainer>
         
         <Stack.Navigator>
-        {/* <Stack.Screen
+        <Stack.Screen
           name="Login"
           component={Login}
-          options={{title: 'Bem vindo'}} /> */}
+          options={{title: 'Bem vindo'}} />
   
           <Stack.Screen
           name="LastLetter"

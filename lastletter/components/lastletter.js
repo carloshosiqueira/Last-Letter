@@ -90,7 +90,7 @@ const LastLetter = () => {
 
   return (
    
-    <View style={styles.container}>
+    <View style={[styles.modalContainer, { backgroundColor }]}>
       <Modal
         visible={modalVisible}
         animationType="slide"
@@ -117,7 +117,7 @@ const LastLetter = () => {
           
         </View>
       </Modal>
-      <ImageBackground source={require('../assets/bg.jpg')} style={styles.backgroundImage}>
+      {/* <ImageBackground source={require('../assets/bg.jpg')} style={styles.backgroundImage}> */}
       <Text style={styles.title}>Jogo de Cadeia de Palavras</Text>
       {isGameActive ? (
         <>
@@ -150,7 +150,7 @@ const LastLetter = () => {
           <Button title="Iniciar Jogo" onPress={startGame} />
         )
       )}
-      </ImageBackground>
+      {/* </ImageBackground> */}
     </View>
 
    
@@ -158,10 +158,10 @@ const LastLetter = () => {
 };
 
 const styles = StyleSheet.create({
-  backgroundImage: {
-    flex: 1,
-    resizeMode: 'cover',
-},
+//   backgroundImage: {
+//     flex: 1,
+//     resizeMode: 'cover',
+// },
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -173,6 +173,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 16,
     color: '#FF69B4', // Rosa escuro
+    marginTop: 25,
   },
   subtitle: {
     fontSize: 18,
