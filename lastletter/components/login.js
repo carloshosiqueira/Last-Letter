@@ -1,8 +1,8 @@
-import { StyleSheet, Text, View, TextInput, Dimensions, TouchableOpacity, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Dimensions, TouchableOpacity, ImageBackground, Image } from 'react-native';
 import React from 'react';
 import MaskInput from 'react-native-mask-input';
 
-//pegar dimensão da tela
+// pegar dimensão da tela
 const { width, height } = Dimensions.get('screen');
 
 const users = [
@@ -28,6 +28,8 @@ export default function Login({ navigation }) {
     return (
         <ImageBackground source={require('../assets/bg.jpg')} style={styles.backgroundImage}>
             <View style={styles.container}>
+                <Image source={require('../assets/logo.png')} style={styles.logo} />
+                <Image source={require('../assets/name.png')} style={styles.name} />
                 <Text style={styles.title}>Formulário de cadastro</Text>
                 <View style={styles.form}>
                     <MaskInput
@@ -67,13 +69,32 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         padding: 20,
     },
+    logo: {
+        width: 100,
+        height: 100,
+        marginBottom: 16,
+    },
+    name: {
+        marginBottom: 25,
+        height: 38,
+        width: 300,
+    },
+    appTitle: {
+        fontSize: 32,
+        fontFamily: 'sans-serif', // Fonte divertida e redonda
+        color: '#FF69B4', // Rosa escuro
+        marginBottom: 16,
+        textShadowColor: 'rgba(0, 0, 0, 0.75)',
+        textShadowOffset: { width: 3, height: 1 },
+        textShadowRadius: 1,
+    },
     title: {
         fontSize: 24,
-        fontWeight: 'bold', // Adiciona a mesma propriedade de fonte
+        fontWeight: 'bold',
         marginBottom: 16,
-        color: '#FF69B4', // Rosa escuro
-        textShadowColor: 'rgba(0, 0, 0, 0.75)',
-        textShadowOffset: { width: 3, height: 2 },
+        color: '#fd217a', // Rosa escuro
+        textShadowColor: 'white',
+        textShadowOffset: { width: 3, height: 1 },
         textShadowRadius: 1,
     },
     form: {
@@ -103,6 +124,6 @@ const styles = StyleSheet.create({
     loginText: {
         color: '#fff',
         fontSize: 18,
-        fontWeight: 'bold', // Adiciona a mesma propriedade de fonte
+        fontWeight: 'bold',
     },
 });

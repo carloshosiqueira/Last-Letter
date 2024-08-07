@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, FlatList, Alert, Keyboard, Modal, TouchableOpacity, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, FlatList, Alert, Keyboard, Modal, TouchableOpacity, Image, ImageBackground } from 'react-native';
 
 const INITIAL_TIME = 12;
 const DECREMENT_TIME = 1;
@@ -12,7 +12,7 @@ const LastLetter = () => {
   const [timeLeft, setTimeLeft] = useState(INITIAL_TIME);
   const [isGameActive, setIsGameActive] = useState(false);
   const [winner, setWinner] = useState(null);
-  const [backgroundColor, setBackgroundColor] = useState('#FFFFFF');
+  const [backgroundColor, setBackgroundColor] = useState('rgb(255,233,143)');
   const [modalVisible, setModalVisible] = useState(true); // Estado para controlar a visibilidade do modal
   const timerRef = useRef(null);
   const inputRef = useRef(null);
@@ -84,89 +84,94 @@ const LastLetter = () => {
   };
 
   const getBackgroundColor = () => {
-    if (!isGameActive) return '#FFFFFF';
-    return currentPlayer === 1 ? '#ffdae9' : '#FFFACD';
+    if (!isGameActive) return 'rgb(255,233,143)';
+    return currentPlayer === 1 ? '#ff8ab7' : '#ff9829';
   };
 
   return (
-   
-    <View style={[styles.modalContainer, { backgroundColor }]}>
-      <Modal
-        visible={modalVisible}
-        animationType="slide"
-        transparent={true}
-        onRequestClose={() => setModalVisible(false)}
-      >
-       
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>Regras do Jogo</Text>
-            <Text style={styles.modalText}>
-              1. Cada jogador deve digitar uma palavra que comece com a última letra da palavra anterior.
-            </Text>
-            <Text style={styles.modalText}>
-              2. Não é permitido repetir palavras.
-            </Text>
-            <Text style={styles.modalText}>
-              3. O tempo para cada jogada é limitado. Se o tempo acabar, o outro jogador vence.
-            </Text>
-            <TouchableOpacity onPress={() => setModalVisible(false)} style={styles.modalButton}>
-              <Text style={styles.modalButtonText}>Fechar</Text>
-            </TouchableOpacity>
+    
+      <View style={[styles.container, { backgroundColor }]}>
+        <Modal
+          visible={modalVisible}
+          animationType="slide"
+          transparent={true}
+          onRequestClose={() => setModalVisible(false)}
+        >
+          <View style={styles.modalContainer}>
+            <View style={styles.modalContent}>
+              <Text style={styles.modalTitle}>Regras do Jogo</Text>
+              <Text style={styles.modalText}>
+                1. Cada jogador deve digitar uma palavra que comece com a última letra da palavra anterior.
+              </Text>
+              <Text style={styles.modalText}>
+                2. Não é permitido repetir palavras.
+              </Text>
+              <Text style={styles.modalText}>
+                3. O tempo para cada jogada é limitado. Se o tempo acabar, o outro jogador vence.
+              </Text>
+              <TouchableOpacity onPress={() => setModalVisible(false)} style={styles.modalButton}>
+                <Text style={styles.modalButtonText}>Fechar</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-          
-        </View>
-      </Modal>
-      {/* <ImageBackground source={require('../assets/bg.jpg')} style={styles.backgroundImage}> */}
-      <Text style={styles.title}>Jogo de Cadeia de Palavras</Text>
-      {isGameActive ? (
-        <>
-          <Text style={styles.subtitle}>Vez do Jogador {currentPlayer}</Text>
-          <Text style={styles.timer}>Tempo restante: {timeLeft}s</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Digite uma palavra"
-            value={currentWord}
-            onChangeText={setCurrentWord}
-            onSubmitEditing={handleWordSubmit}
-            editable={isGameActive}
-            ref={inputRef}
-          />
-          <Button title="Enviar" onPress={handleWordSubmit} />
-          <FlatList
-            data={words}
-            renderItem={({ item }) => <Text style={styles.word}>{item}</Text>}
-            keyExtractor={(item, index) => index.toString()}
-            style={styles.wordList}
-          />
-        </>
-      ) : (
-        winner !== null ? (
-          <View style={styles.winnerContainer}>
-            <Text style={styles.winnerText}>Jogador {winner} venceu!</Text>
-            <Button title="Reiniciar Jogo" onPress={startGame} />
-          </View>
+        </Modal>
+        <Image source={require('../assets/name.png')} style={styles.name} />
+        {isGameActive ? (
+          <>
+            <Text style={styles.subtitle}>Vez do Jogador {currentPlayer}</Text>
+            <Text style={styles.timer}>Tempo restante: {timeLeft}s</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Digite uma palavra"
+              value={currentWord}
+              onChangeText={setCurrentWord}
+              onSubmitEditing={handleWordSubmit}
+              editable={isGameActive}
+              ref={inputRef}
+            />
+            <Button title="Enviar" onPress={handleWordSubmit} />
+            <FlatList
+              data={words}
+              renderItem={({ item }) => <Text style={styles.word}>{item}</Text>}
+              keyExtractor={(item, index) => index.toString()}
+              style={styles.wordList}
+            />
+          </>
         ) : (
-          <Button title="Iniciar Jogo" onPress={startGame} />
-        )
-      )}
-      {/* </ImageBackground> */}
-    </View>
-
-   
+          winner !== null ? (
+          // <ImageBackground source={require('../assets/bg.jpg')} style={styles.backgroundImage}>
+            <View style={styles.winnerContainer}>
+              <Text style={styles.winnerText}>Jogador {winner} venceu!</Text>
+              <Button title="Reiniciar Jogo" onPress={startGame} />
+            </View>
+            // </ImageBackground>
+          ) : (
+            <Button title="Iniciar Jogo" onPress={startGame} />
+          )
+        )}
+      </View>
+    
   );
 };
 
 const styles = StyleSheet.create({
-//   backgroundImage: {
-//     flex: 1,
-//     resizeMode: 'cover',
-// },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover',
+    width: '100%',
+    height: '100%',
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 16,
+  },
+  name: {
+    marginBottom: 25,
+    marginTop: 20,
+    height: 38,
+    width: 300,
   },
   title: {
     fontSize: 24,
@@ -202,7 +207,7 @@ const styles = StyleSheet.create({
   word: {
     fontSize: 16,
     padding: 4,
-    color: '#FF69B4', // Rosa escuro
+    color: 'black', // Rosa escuro
   },
   winnerContainer: {
     justifyContent: 'center',
