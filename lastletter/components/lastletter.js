@@ -139,12 +139,10 @@ const LastLetter = () => {
           </>
         ) : (
           winner !== null ? (
-          // <ImageBackground source={require('../assets/bg.jpg')} style={styles.backgroundImage}>
             <View style={styles.winnerContainer}>
               <Text style={styles.winnerText}>Jogador {winner} venceu!</Text>
               <Button title="Reiniciar Jogo" onPress={startGame} />
             </View>
-            // </ImageBackground>
           ) : (
             <Button title="Iniciar Jogo" onPress={startGame} />
           )
@@ -177,27 +175,27 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 16,
-    color: '#FF69B4', // Rosa escuro
+    color: '#FF69B4',
     marginTop: 25,
   },
   subtitle: {
     fontSize: 18,
     marginBottom: 8,
-    color: '#503b0e', // Amarelo ouro
+    color: '#503b0e',
   },
   timer: {
     fontSize: 16,
     marginBottom: 16,
-    color: '#503b0e', // Rosa claro
+    color: '#503b0e',
   },
   input: {
     height: 40,
-    borderColor: '#FF69B4', // Amarelo ouro
+    borderColor: '#FF69B4',
     borderWidth: 1,
     marginBottom: 16,
     paddingHorizontal: 8,
     width: '80%',
-    backgroundColor: '#ffe8b7', // Amarelo claro
+    backgroundColor: '#ffe8b7',
     borderRadius: 8,
   },
   wordList: {
@@ -207,7 +205,7 @@ const styles = StyleSheet.create({
   word: {
     fontSize: 16,
     padding: 4,
-    color: 'black', // Rosa escuro
+    color: 'black',
   },
   winnerContainer: {
     justifyContent: 'center',
@@ -217,13 +215,13 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 16,
-    color: '#d64e86', // Rosa escuro
+    color: '#d64e86',
   },
   modalContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fundo semitransparente
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   modalContent: {
     width: '80%',
@@ -244,7 +242,7 @@ const styles = StyleSheet.create({
   },
   modalButton: {
     marginTop: 20,
-    backgroundColor: '#FF69B4', // Rosa escuro
+    backgroundColor: '#FF69B4',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
